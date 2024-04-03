@@ -1,0 +1,58 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+<!--------------------------- OTRA MANERA DE HACERLO ---------------------------------
+<form action="/iniciaeSesion/ " method="post" class="card card-body">
+
+    <h1>Login</h1>
+
+    {{error}}
+
+    ----------------------------- CSRF cookie -----------------------------
+   {% csrf_token %}
+
+    ------------------------ Se manda a traer el formulario desde views --------------------------
+   {{form.as_p}}
+   <button>
+       Inicia Sesión
+   </button>
+-------------------------------------------------------------------------------------->
+
+<main class="container">
+    <div class="row">
+     <div class="col-md-8 offset-md-2 mt-5">
+         <form action="/iniciaeSesion/" method="post" class="card card-body">
+         
+             <h1 class="text-center">Login</h1>
+              <!-- CSRF cookie -->
+             {% csrf_token %}
+         
+             <!-- Se manda a traer el error (si existe) desde views -->
+             {{error|escape}}
+         
+              <!-- Se manda a traer el formulario desde views -->
+
+             <div class="mb-3">
+                <label for="username"> Username: </label>
+                <input type="text" name="username" id="username" class="form-control" placeholder="Introduce tu usuario">
+             </div>
+
+             <label for="password" class="form-label">Password:</label>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Introduce tu contraseña">
+           
+            <br>
+
+             <button class="btn btn-primary">
+                 Iniciar Sesión
+             </button>
+         </form>
+     </div>
+    </div>
+ </main>
+
+
+
+
+{% endblock %}
+

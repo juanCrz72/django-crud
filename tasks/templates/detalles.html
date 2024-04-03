@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2 mt-5">
+
+
+  <!-- ----------------------------- FORMULARIO UPDATE -------------------------------- -->
+<form method = "POST" class="card card-body">
+
+  <h1>{{task.titulo|escape}}</h1>
+
+    {{error}}
+
+  <!-- CSRF cookie -->
+    {% csrf_token %} 
+    <!-- Se manda a traer el formulario corresppondiente a la tarea desde views detalles -->
+    {{form.as_p|escape}}
+    <button class="btn btn-primary">
+         Actualizar
+    </button>
+</form>
+<br>
+<!-- ------------------------------------------------------------------------------- -->
+
+  <!-- ----------------------------- FORMULARIO TAREA COMPLETA -------------------------------- -->
+<form action = "{% url 'tarea_completada' task.id %}" method = "POST">
+  <!-- CSRF cookie -->
+  {% csrf_token %} 
+    <button class="btn btn-secondary">
+      Tarea completada
+    </button>
+</form>
+
+<br>
+  <!-- ----------------------------- FUNCIÓN BORRAR -------------------------------- -->
+<form action = "{% url 'eliminar_tarea' task.id %}" method = "POST">
+  <!-- CSRF cookie -->
+  {% csrf_token %} 
+    <button class="btn btn-danger">
+      Borrar tarea 
+    </button>
+</form> 
+</div>
+</div>
+</main>
+
+{% endblock %}
