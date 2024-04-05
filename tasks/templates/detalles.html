@@ -1,22 +1,100 @@
+
 {% extends 'base.html' %}
 
 {% block content %}
+<style>
+  
+  .containerForm {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 4rem;
+        }
 
-<main class="container">
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 1rem;
+        }
+
+        .card-body {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+            background-color: #4682b4;
+            color: #fff;
+            border: none;
+            border-radius: 1rem;
+            padding: 0.75rem 1.25rem;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #305f8c;
+        }
+
+
+        .btn-secondary {
+    background-color: #6c757d; /* Gris */
+    color: #fff;
+    border: none;
+    border-radius: 1rem;
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transición suave del color de fondo */
+}
+
+.btn-secondary:hover {
+    background-color: #adb5bd; /* Gris claro */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Rojo */
+    border: none;
+    color: #fff;
+    border: none;
+    border-radius: 1rem;
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transición suave del color de fondo */ 
+}
+
+.btn-danger:hover {
+    background-color: #ff5a66; /* Rojo claro */
+}
+
+</style>
+
+
+<main class="containerForm">
   <div class="row">
     <div class="col-md-8 offset-md-2 mt-5">
 
 
   <!-- ----------------------------- FORMULARIO UPDATE -------------------------------- -->
-<form method = "POST" class="card card-body">
+<form method="POST" class="card card-body">
 
-  <h1>{{task.titulo|escape}}</h1>
+  <h1>{{task.titulo}}</h1>
 
     {{error}}
 
   <!-- CSRF cookie -->
     {% csrf_token %} 
-    <!-- Se manda a traer el formulario corresppondiente a la tarea desde views detalles -->
+    <!-- Se manda a traer el formulario correspondiente a la tarea desde views detalles -->
     {{form.as_p|escape}}
     <button class="btn btn-primary">
          Actualizar
@@ -26,7 +104,7 @@
 <!-- ------------------------------------------------------------------------------- -->
 
   <!-- ----------------------------- FORMULARIO TAREA COMPLETA -------------------------------- -->
-<form action = "{% url 'tarea_completada' task.id %}" method = "POST">
+<form action="{% url 'tarea_completada' task.id %}" method="POST">
   <!-- CSRF cookie -->
   {% csrf_token %} 
     <button class="btn btn-secondary">
@@ -36,7 +114,7 @@
 
 <br>
   <!-- ----------------------------- FUNCIÓN BORRAR -------------------------------- -->
-<form action = "{% url 'eliminar_tarea' task.id %}" method = "POST">
+<form action="{% url 'eliminar_tarea' task.id %}" method="POST">
   <!-- CSRF cookie -->
   {% csrf_token %} 
     <button class="btn btn-danger">

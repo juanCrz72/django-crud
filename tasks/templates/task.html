@@ -31,3 +31,48 @@
 {% endfor %}
 
 {% endblock %}
+
+
+
+
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+.btn-primary:hover {
+    background-color: #305f8c;
+}
+
+</style>
+
+  <!-- Lista de la consulta hecha desde view -> task -->
+  <h1 style="text-align: center; font-size: 2em;">Tareas</h1>
+
+  {% for task in tareas %}
+  <div style="width: 50%; margin: 2.5em auto; background-color: white;">
+      <div style="text-align: center; background-color: #e7ecf0; padding: 1em;">
+          Tarea {{task.id}}
+      </div>
+      <div style="text-align: center; padding: 1em;">
+  
+          {% if task.important == True %}
+              <h2 style="color: blue; border: 1px solid blue; border-radius: 1em; padding: 0.25em;">{{task.titulo|escape}}</h2>
+          {% else %}
+              <h2 style="color: gray; border: 1px solid gray; border-radius: 1em; padding: 0.25em;">{{task.titulo|escape}}</h2>
+          {% endif %}
+  
+          <p>{{task.descripcion|escape}}</p>
+          <a href=" {% url 'detalles' task.id %}" style="background-color: #4682b4; color: #fff; border: none; border-radius: 1rem; padding: 0.75rem 1.25rem; text-decoration: none; cursor: pointer;">Editar</a>
+      </div>
+      <div style="text-align: center; background-color: #e7ecf0; padding: 1em; color: #6c757d;">
+          {{task.datecompleted | date:'j M Y:i'}}
+      </div>
+  </div>
+  {% endfor %}
+  
+
+{% endblock %}

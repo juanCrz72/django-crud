@@ -2,7 +2,55 @@
 
 {% block content %}
 
-<main class="container">
+<style>
+
+.containerForm {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            margin: 4rem;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 1rem;
+        }
+
+        .card-body {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+            background-color: #4682b4;
+            color: #fff;
+            border: none;
+            border-radius: 1rem;
+            padding: 0.75rem 1.25rem;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #305f8c;
+        }
+
+
+</style>
+
+<main class="containerForm">
   <div class="row">
     <div class="col-md-8 offset-md-2 mt-5">
 
@@ -22,6 +70,5 @@
     </div>
   </div>
 </main>
-
 
 {% endblock %}

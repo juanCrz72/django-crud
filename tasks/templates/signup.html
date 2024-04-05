@@ -1,73 +1,89 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<style>
+    
+    .containerForm {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60vh;
+            margin: 2rem;
+        }
 
-<!--------------------------- OTRA MANERA DE HACERLO ---------------------------------
-<main class="container">
-   <div class="row">
-    <div class="col-md-8 offset-md-2 mt-5">
-        <form action="/signup/" method="post" class="card card-body">
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 1rem;
+        }
 
-            <h1 class="text-center">Regístrate</h1>
-            --------------------------- CSRF cookie ---------------------------
-            {% csrf_token %}
-        
-           --------------- Se manda a traer el error (si existe) desde views ---------------
-            {{error}}
-        
-             --------------- Se manda a traer el formulario desde views ---------------
-            {{form}}
-            <button>
-                Signup
-            </button>
-        </form>
-    </div>
-   </div>
-</main> -------------------------------------------------------------------------------------->
+        .card-body {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+            background-color: #4682b4;
+            color: #fff;
+            border: none;
+            border-radius: 1rem;
+            padding: 0.75rem 1.25rem;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #305f8c;
+        }
+
+    </style>
 
 
-
-<main class="container">
+<main class="containerForm mt-5">
     <div class="row">
-     <div class="col-md-8 offset-md-2 mt-5">
-         <form action="/signup/" method="post" class="card card-body">
- 
-             <h1 class="text-center">Regístrate</h1>
-              <!-- CSRF cookie -->
-             {% csrf_token %}
-         
-             <!-- Se manda a traer el error (si existe) desde views -->
-             {{ error|escape }}
-         
-              <!-- Se manda a traer el formulario desde views -->
-             <div class="mb-3">
-                <label for="username"> Username: </label>
-                <input type="text" name="username" id="username" class="form-control" placeholder="Introduce tu usuario">
-             </div>
-
-             <label for="password1" class="form-label">Password:</label>
-            <input type="password" name="password1" id="password1" class="form-control" placeholder="Introduce tu contraseña">
-            <div id="passwordHelpBlock" class="form-text">
-                Su contraseña no puede ser demasiado similar a su otra información personal.<br>
-                Su contraseña debe contener al menos 8 caracteres.<br>
-                Su contraseña no puede ser una contraseña de uso común.<br>
-                Su contraseña no puede ser completamente numérica. 
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Regístrate</h2>
+                    <form action="/signup/" method="post">
+                        {% csrf_token %}
+                        {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            <h5 class="text-center">{{ error|escape }}</h5>
+                        </div>
+                        {% endif %}
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username:</label>
+                            <input type="text" name="username" id="username" class="form-control" placeholder="Introduce tu usuario">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password1" class="form-label">Password:</label>
+                            <input type="password" name="password1" id="password1" class="form-control" placeholder="Introduce tu contraseña">
+                           
+                        </div>
+                        <div class="mb-3">
+                            <label for="password2" class="form-label">Confirmar Password:</label>
+                            <input type="password" name="password2" id="password2" class="form-control" placeholder="Confirma tu contraseña">
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Registrarse</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <br>
-            <label for="password2" class="form-label">Password confirmation:</label>
-            <input type="password" name="password2" id="password2" class="form-control" placeholder="Confirma tu contraseña">
-            <div id="passwordHelpBlock" class="form-text">
-            Ingrese la misma contraseña que antes, para verificación.
-            </div><br>
-
-            <br>
-             <button class="btn btn-primary">
-                 Signup
-             </button>
-         </form>
-     </div>
+        </div>
     </div>
- </main>
+</main>
 
 
 {% endblock %}

@@ -1,12 +1,52 @@
+
 {% extends 'base.html' %}
 
 {% block content %}
+
+<style>
+.card {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    margin: 2rem auto; /* Margen vertical de 2rem y centrado horizontal */
+    max-width: 500px; /* Ancho máximo de la tarjeta */
+}
+
+.card-body {
+    padding: 4rem;
+}
+
+.btn-primary:hover {
+    background-color: #4682b4; /* Azul claro */
+}
+
+.alert-primary {
+    background-color: #007bff; /* Azul */
+    color: #fff;
+    border: none;
+    border-radius: 1rem; /* Borde redondeado */
+    padding: 0.75rem 1.25rem; /* Espaciado interno */
+}
+
+.btn-primary {
+            background-color: #4682b4;
+            color: #fff;
+            border: none;
+            border-radius: 1rem;
+            padding: 0.75rem 1.25rem;
+            cursor: pointer;
+        }
+
+</style>
+
+
 <main class="container py-3">
     <section class="card card-body">
       <h1 class="display-1 text-center">Sistema de Gestión de Tareas</h1>
 
         <p>En el desarrollo de aplicaciones web, 
         la gestión eficiente de tareas es una parte crucial para la organización y productividad...</p>
+        <br>
 
 
         {% if user.is_authenticated %}
@@ -16,9 +56,9 @@
         </div>
 
     {% else %}
-    <div>
-      <a class="btn btn-primary" href ="/signup/">Registrate</a>
-      <a class="btn btn-primary" href ="/iniciaeSesion">Inicia Sesión</a>
+     <div>
+      <a class="btn btn-primary alert-primary" href ="/signup/">Registrate</a>
+      <a class="btn btn-primary alert-primary" href ="/iniciaeSesion">Inicia Sesión</a>
      </div>
 
     {% endif %}
