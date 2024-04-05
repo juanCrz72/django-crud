@@ -1,45 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1 class="display-1 text-center">Tareas</h1>
-
-  <!-- Tarjeta de boostrap -->
-  <!-- Lista de la consulta hecha desde view -> task -->
-{% for task in tareas %}
-<div class="col-md-8 offset-md-2 mt-5">
-<div class="card text-center">
-    <div class="card-header">
-      Tarea {{task.id}}
-    </div>
-    <div class="card-body">
-
-         <!-- Si la tarea es importante se marcará de color azul -->
-        {% if task.important == True %}
-                <h5 class="card-title" style="color: blue;">{{task.titulo|escape}}</h5>
-        {% else %}
-                <h5 class="card-title">{{task.titulo|escape}}</h5>
-        {% endif %}
-
-      <p class="card-text">{{task.descripcion|escape}}</p>
-      <a href=" {% url 'detalles' task.id %}" class="btn btn-primary">Editar</a>
-    </div>
-    <div class="card-footer text-muted">
-        {{task.datecompleted | date:'j M Y:i'}}
-    </div>
-  </div>
-</div>
-{% endfor %}
-
-{% endblock %}
-
-
-
-
-
-
-{% extends 'base.html' %}
-
-{% block content %}
 
 <style>
 
